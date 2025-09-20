@@ -39,12 +39,18 @@ neurodevarc-career-advisor/
    git clone https://github.com/YourGitHub/neurodevarc-career-advisor.git
 
 pip install -r requirements.txt
+
+
 streamlit run frontend/app.py
 
 👥 Team NeuroDevArc
 
 Curious minds
+
+
 Problem-solvers
+
+
 Future-builders
 
 
