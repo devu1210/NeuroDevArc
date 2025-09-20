@@ -2,6 +2,7 @@ import streamlit as st
 import sys
 import os
 from PIL import Image
+import base64
 
 # --- Backend import ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -27,19 +28,23 @@ body, .css-1d391kg {font-family: 'Poppins', sans-serif;}
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 25px;
-    padding: 2.5rem;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    padding: 3rem;
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    max-width: 850px;
+    max-width: 900px;
     margin: 2rem auto;
     text-align: center;
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: scale(1.02);
 }
 
 .logo {
     border-radius: 25px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
     margin-bottom: 1rem;
 }
 
@@ -74,9 +79,7 @@ button {
     width: 100% !important;
     transition: transform 0.15s ease-in-out;
 }
-button:hover {
-    transform: scale(1.05);
-}
+button:hover { transform: scale(1.05); }
 
 .expander {
     border-radius: 15px !important;
@@ -94,7 +97,27 @@ button:hover {
     padding: 6px 15px;
     margin: 3px;
     font-weight: 500;
+    transition: transform 0.2s;
 }
+.chip:hover {
+    transform: scale(1.1);
+}
+.download-share {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+.download-share a {
+    text-decoration: none;
+    color: white;
+    background: #4b0082;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: transform 0.15s;
+}
+.download-share a:hover { transform: scale(1.05); }
 </style>
 """, unsafe_allow_html=True)
 
@@ -104,7 +127,7 @@ st.markdown('<div class="card">', unsafe_allow_html=True)
 # --- Logo ---
 try:
     logo = Image.open("assets/logo.png")
-    st.image(logo, width=180, use_column_width=False)
+    st.image(logo, width=200, use_column_width=False)
 except FileNotFoundError:
     st.warning("⚠️ assets/logo.png not found.")
 
@@ -128,17 +151,37 @@ if st.button("🔍 Get Career Advice"):
         if result:
             st.success(f"🎯 Recommended Path for **{career_goal.title()}**")
 
+            # Editable suggestions
+            combined_text = "Skills:\n" + ", ".join(result["skills"]) + "\n\nResources:\n" + "\n".join(result["resources"]) + "\n\nRoadmap:\n" + "\n".join(result["roadmap"])
+            editable = st.text_area("Edit your advice (optional):", value=combined_text, height=200)
+
+            # Skills
             with st.expander("🛠 Skills Required", expanded=True):
                 for skill in result["skills"]:
                     st.markdown(f'<span class="chip">{skill}</span>', unsafe_allow_html=True)
 
+            # Resources
             with st.expander("📚 Suggested Resources", expanded=True):
                 for r in result["resources"]:
                     st.write(f"- {r}")
 
+            # Roadmap
             with st.expander("🗺 Career Roadmap", expanded=True):
                 for i, step in enumerate(result["roadmap"], start=1):
                     st.markdown(f'<span class="chip">{i}. {step}</span>', unsafe_allow_html=True)
+
+            # Download & Share
+            def get_text_download_link(text, filename="career_advice.txt"):
+                b64 = base64.b64encode(text.encode()).decode()
+                return f'data:file/txt;base64,{b64}'
+
+            download_link = get_text_download_link(editable)
+            st.markdown(f'''
+            <div class="download-share">
+                <a href="{download_link}" download="career_advice.txt">💾 Download</a>
+                <a href="#">🔗 Share</a>
+            </div>
+            ''', unsafe_allow_html=True)
 
             st.info("✨ Tip: Start with the first skill in the roadmap and stay consistent!")
         else:
