@@ -14,6 +14,16 @@ st.set_page_config(
     page_icon="🚀",
     layout="wide"
 )
+# --- Logo centered ---
+try:
+    logo = Image.open("assets/logo.png")
+    st.markdown(f'''
+        <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+            <img src="assets/logo.png" width="180" style="border-radius: 25px; box-shadow: 0 6px 25px rgba(0,0,0,0.3);">
+        </div>
+    ''', unsafe_allow_html=True)
+except FileNotFoundError:
+    st.warning("⚠️ assets/logo.png not found.")
 
 # --- Custom CSS ---
 st.markdown("""
@@ -188,3 +198,4 @@ if st.button("🔍 Get Career Advice"):
             st.error("❌ Sorry, this career isn’t in the database yet. Try Data Scientist, Web Developer, or UX Designer.")
 
 st.markdown('</div>', unsafe_allow_html=True)
+
