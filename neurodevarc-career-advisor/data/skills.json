@@ -1,0 +1,35 @@
+{
+  "data scientist": {
+    "skills": ["Python", "Machine Learning", "SQL", "Statistics", "Deep Learning"],
+    "resources": ["Kaggle", "Coursera ML", "fast.ai", "DataCamp", "Towards Data Science"],
+    "roadmap": [
+      "Learn Python basics",
+      "Master Data Analysis (Pandas, Numpy)",
+      "Learn Machine Learning",
+      "Explore Deep Learning",
+      "Do projects on Kaggle"
+    ]
+  },
+  "web developer": {
+    "skills": ["HTML", "CSS", "JavaScript", "React", "Node.js", "Databases"],
+    "resources": ["freeCodeCamp", "MDN Docs", "Frontend Mentor", "W3Schools"],
+    "roadmap": [
+      "Learn HTML, CSS, JS",
+      "Practice building websites",
+      "Learn React and modern frameworks",
+      "Understand backend basics (Node.js/Express)",
+      "Build a full-stack project"
+    ]
+  },
+  "ux designer": {
+    "skills": ["Figma", "Wireframing", "User Research", "Prototyping", "Usability Testing"],
+    "resources": ["Figma Community", "Interaction Design Foundation", "Coursera UI/UX"],
+    "roadmap": [
+      "Learn design fundamentals",
+      "Practice wireframing in Figma",
+      "Understand user research",
+      "Create prototypes",
+      "Work on real design projects"
+    ]
+  }
+}
