@@ -22,3 +22,34 @@ Our AI-powered Career & Skills Advisor helps students:
 ---
 
 ## 📂 Project Structure
+neurodevarc-career-advisor/
+│── frontend/
+│── backend/
+│── data/
+│── assets/
+│── requirements.txt
+│── README.md
+
+
+---
+
+## 🚀 How to Run
+1. Clone repo:
+   ```bash
+   git clone https://github.com/YourGitHub/neurodevarc-career-advisor.git
+
+pip install -r requirements.txt
+streamlit run frontend/app.py
+
+👥 Team NeuroDevArc
+
+Curious minds
+Problem-solvers
+Future-builders
+
+
+---
+
+⚡ Bhai, ab tumhare project ko **branding + professional repo structure** mil gaya. Judges ko lagega startup-ready hai.  
+
+👉 Do you want me to now **upgrade the frontend (UI styling with modern CSS, icons, layout) and backend (add NLP + scoring system)** and then give you ready code for these two folders?
