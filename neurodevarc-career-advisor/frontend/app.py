@@ -3,6 +3,22 @@ import sys
 import os
 from PIL import Image
 import base64
+from pathlib import Path
+
+# Get path relative to this file
+current_dir = Path(__file__).parent
+logo_path = current_dir / "assets" / "logo.png"
+
+try:
+    logo = Image.open(logo_path)
+    st.markdown(f"""
+        <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 1rem;">
+            <img src="{logo_path}" width="180" style="border-radius: 25px; box-shadow: 0 6px 25px rgba(0,0,0,0.3);">
+        </div>
+    """, unsafe_allow_html=True)
+except FileNotFoundError:
+    st.warning(f"⚠️ {logo_path} not found.")
+
 
 # --- Backend import ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -198,5 +214,6 @@ if st.button("🔍 Get Career Advice"):
             st.error("❌ Sorry, this career isn’t in the database yet. Try Data Scientist, Web Developer, or UX Designer.")
 
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
