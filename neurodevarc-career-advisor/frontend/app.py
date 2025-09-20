@@ -5,6 +5,14 @@ import os
 from PIL import Image
 
 
+
+st.image("assets/logo.png", width=150)
+
+# backend/career_recommender.py
+with open("data/skills.json", "r") as f:
+
+
+
 # Ensure the backend module can be found
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from backend.career_recommender import get_career_advice
@@ -129,4 +137,5 @@ if st.button("🔍 Get Career Advice"):
                     st.write(f"{i}. {step}")
             st.info("✨ Tip: Start with the first skill in the roadmap and stay consistent!")
         else:
+
             st.error("❌ Sorry, this career isn’t in the database yet. Try Data Scientist, Web Developer, or UX Designer.")
