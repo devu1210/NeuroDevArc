@@ -4,6 +4,20 @@ import os
 from PIL import Image
 import base64
 
+from pathlib import Path
+
+
+# Path relative to this file
+current_dir = Path(__file__).parent
+logo_path = current_dir / "assets" / "logo.png"
+
+try:
+    logo = Image.open(logo_path)
+    st.image(logo, width=180)
+except FileNotFoundError:
+    st.warning(f"⚠️ {logo_path} not found.")
+
+
 # --- Backend import ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from backend.career_recommender import get_career_advice
@@ -198,6 +212,7 @@ if st.button("🔍 Get Career Advice"):
             st.error("❌ Sorry, this career isn’t in the database yet. Try Data Scientist, Web Developer, or UX Designer.")
 
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
