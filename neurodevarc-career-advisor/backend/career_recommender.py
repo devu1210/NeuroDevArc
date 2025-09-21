@@ -1,5 +1,12 @@
 # backend/career_recommender.py
-import json
+import os, json
+
+def load_careers():
+    base_path = os.path.dirname(os.path.dirname(__file__))  # go up from backend/
+    data_path = os.path.join(base_path, "data", "skills.json")
+    with open(data_path, "r") as f:
+        return json.load(f)
+
 
 def load_careers():
     """Load career data from JSON file"""
@@ -23,6 +30,7 @@ def load_careers():
     with open(skills_file, "r") as f:
         data = json.load(f)
     return data
+
 
 
 
