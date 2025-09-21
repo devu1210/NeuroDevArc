@@ -4,7 +4,16 @@ import os
 from PIL import Image
 import base64
 
+
 from pathlib import Path
+
+# Add backend folder to sys.path
+sys.path.append(str(Path(__file__).parent.parent / "backend"))
+
+from career_recommender import get_career_advice
+
+
+
 
 
 # Path relative to this file
@@ -16,6 +25,7 @@ try:
     st.image(logo, width=180)
 except FileNotFoundError:
     st.warning(f"⚠️ {logo_path} not found.")
+
 
 
 # --- Backend import ---
@@ -212,6 +222,7 @@ if st.button("🔍 Get Career Advice"):
             st.error("❌ Sorry, this career isn’t in the database yet. Try Data Scientist, Web Developer, or UX Designer.")
 
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
