@@ -7,11 +7,20 @@ import base64
 
 from pathlib import Path
 
+
 # Add backend folder to sys.path
 sys.path.append(str(Path(__file__).parent.parent / "backend"))
 
 from career_recommender import get_career_advice
 
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+logo_path = os.path.join(BASE_DIR, "assets", "logo.png")
+
+if os.path.exists(logo_path):
+    st.image(logo_path, width=150)
+else:
+    st.write("⚠️ Logo not found.")
 
 
 
@@ -222,6 +231,7 @@ if st.button("🔍 Get Career Advice"):
             st.error("❌ Sorry, this career isn’t in the database yet. Try Data Scientist, Web Developer, or UX Designer.")
 
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
